@@ -1,6 +1,8 @@
+import os
 import unittest
 
-from src.VotingResultsScraper import scrap_top_100_awards_links, scrap_top_100_djs_voting_results
+from src.VotingResultsScraper import scrap_top_100_awards_links, scrap_top_100_djs_voting_results, generate_file_name, \
+    scrap_all_voting_results
 
 EXPECTED_TOP_100_AWARDS_LINKS = [
     'http://www.electronicdancemusic.cz/awards/top-100-dj-s/672-dj-mag-top-100-dj-s-2020',
@@ -44,6 +46,50 @@ class ScrapTop100DJsVoteResultsTestCase(unittest.TestCase):
             scrapped_djs_count = len(scrapped_voting_results)
 
             self.assertEqual(100, scrapped_djs_count, 'Failed to scrap voting results for link:' + awards_link)
+
+
+class GenerateFileNameTestCase(unittest.TestCase):
+    def test_generate_file_name(self):
+        file_name = generate_file_name(
+            'http://www.electronicdancemusic.cz/awards/top-100-dj-s/316-dj-mag-top-100-dj-s-1997'
+        )
+
+        self.assertEqual('dj-mag-top-100-djs-1997.csv', file_name)
+
+
+class ScrapAllVotingResultsTestCase(unittest.TestCase):
+    def test_scrap_all_voting_results(self):
+        scrap_all_voting_results()
+
+        file_paths = [
+            '../resources/dj-mag-top-100-djs-1997.csv',
+            '../resources/dj-mag-top-100-djs-1998.csv',
+            '../resources/dj-mag-top-100-djs-1999.csv',
+            '../resources/dj-mag-top-100-djs-2000.csv',
+            '../resources/dj-mag-top-100-djs-2001.csv',
+            '../resources/dj-mag-top-100-djs-2002.csv',
+            '../resources/dj-mag-top-100-djs-2003.csv',
+            '../resources/dj-mag-top-100-djs-2004.csv',
+            '../resources/dj-mag-top-100-djs-2005.csv',
+            '../resources/dj-mag-top-100-djs-2006.csv',
+            '../resources/dj-mag-top-100-djs-2007.csv',
+            '../resources/dj-mag-top-100-djs-2008.csv',
+            '../resources/dj-mag-top-100-djs-2009.csv',
+            '../resources/dj-mag-top-100-djs-2010.csv',
+            '../resources/dj-mag-top-100-djs-2011.csv',
+            '../resources/dj-mag-top-100-djs-2012.csv',
+            '../resources/dj-mag-top-100-djs-2013.csv',
+            '../resources/dj-mag-top-100-djs-2014.csv',
+            '../resources/dj-mag-top-100-djs-2015.csv',
+            '../resources/dj-mag-top-100-djs-2016.csv',
+            '../resources/dj-mag-top-100-djs-2017.csv',
+            '../resources/dj-mag-top-100-djs-2018.csv',
+            '../resources/dj-mag-top-100-djs-2019.csv',
+            '../resources/dj-mag-top-100-djs-2020.csv',
+        ]
+
+        for file_path in file_paths:
+            self.assertGreater(os.path.getsize(file_path), 0, 'File ' + file_path + ' is empty')
 
 
 if __name__ == '__main__':

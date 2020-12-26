@@ -1,3 +1,4 @@
+import csv
 import re
 from typing import List
 
@@ -7,6 +8,7 @@ from bs4 import BeautifulSoup
 from DJVoteResult import DJVoteResult
 
 SITE_ROOT = 'http://www.electronicdancemusic.cz'
+RESOURCES_DIR_PATH = '../resources'
 
 
 def scrap_top_100_awards_links() -> List[str]:
@@ -69,7 +71,32 @@ def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
     return list(dj_vote_results)
 
 
-if __name__ == '__main__':
+def generate_file_name(awards_link: str) -> str:
+    awards_year = awards_link[-4:]
+    return 'dj-mag-top-100-djs-' + awards_year + '.csv'
+
+
+def save_scraped_voting_results_to_file(file_name: str, voting_results: List[DJVoteResult]):
+    path_to_file = RESOURCES_DIR_PATH + '/' + file_name
+    with open(path_to_file, mode='w') as results_file:
+        results_writer = csv.writer(results_file)
+
+        for vote_result in voting_results:
+            vote_result_row = [vote_result.position, vote_result.dj_name]
+            results_writer.writerow(vote_result_row)
+
+
+def scrap_all_voting_results():
     top_100_awards_links = scrap_top_100_awards_links()
 
-    print(top_100_awards_links)
+    print(len(top_100_awards_links), 'awards links will be scrapped')
+
+    for awards_link in top_100_awards_links:
+        scrapped_voting_results = scrap_top_100_djs_voting_results(awards_link)
+
+        file_name = generate_file_name(awards_link)
+        save_scraped_voting_results_to_file(file_name, scrapped_voting_results)
+
+
+if __name__ == '__main__':
+    scrap_all_voting_results()
