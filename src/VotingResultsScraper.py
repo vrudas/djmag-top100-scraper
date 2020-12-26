@@ -3,11 +3,11 @@ from typing import List, Tuple
 import requests
 from bs4 import BeautifulSoup
 
-site_root = 'http://www.electronicdancemusic.cz'
+SITE_ROOT = 'http://www.electronicdancemusic.cz'
 
 
 def scrap_top_100_awards_links() -> List[str]:
-    all_awards_page_url = site_root + '/awards/top-100-dj-s'
+    all_awards_page_url = SITE_ROOT + '/awards/top-100-dj-s'
 
     all_awards_page = requests.get(all_awards_page_url)
 
@@ -31,7 +31,7 @@ def scrap_top_100_awards_links() -> List[str]:
 
     return list(
         map(
-            lambda link: site_root + link,
+            lambda link: SITE_ROOT + link,
             awards_links
         )
     )
