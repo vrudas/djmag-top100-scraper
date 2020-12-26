@@ -37,5 +37,14 @@ class ScrapAwardsLinksTestCase(unittest.TestCase):
         self.assertEqual(EXPECTED_TOP_100_AWARDS_LINKS, top_100_awards_links)
 
 
+class ScrapTop100DJsVoteResultsTestCase(unittest.TestCase):
+    def test_scrap_top_100_djs_voting_results(self):
+        for awards_link in EXPECTED_TOP_100_AWARDS_LINKS:
+            scrapped_voting_results = scrap_top_100_djs_voting_results(awards_link)
+            scrapped_djs_count = len(scrapped_voting_results)
+
+            self.assertEqual(100, scrapped_djs_count, 'Failed to scrap voting results for link:' + awards_link)
+
+
 if __name__ == '__main__':
     unittest.main()
