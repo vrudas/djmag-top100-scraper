@@ -8,6 +8,7 @@ setup(
     package_dir={'': 'src'},
     install_requires=[
         'requests',
-        'bs4'
+        'bs4',
+        'coverage'
     ]
 )

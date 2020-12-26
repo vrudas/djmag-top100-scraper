@@ -2,6 +2,8 @@ beautifulsoup4==4.9.3
 bs4==0.0.1
 certifi==2020.12.5
 chardet==4.0.0
+coverage==5.3.1
+-e git+https://github.com/vrudas/djmag-top100-scraper.git@606bbb62be6031dec7692749f46321b1b3490779#egg=djmag_top100_scraper
 idna==2.10
 requests==2.25.1
 soupsieve==2.1
