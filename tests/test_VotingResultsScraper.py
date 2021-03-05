@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from src.VotingResultsScraper import scrap_top_100_awards_links, scrap_top_100_djs_voting_results, generate_file_name, \
+from VotingResultsScraper import scrap_top_100_awards_links, scrap_top_100_djs_voting_results, generate_file_name, \
     scrap_all_voting_results
 
 EXPECTED_TOP_100_AWARDS_LINKS = [
@@ -57,6 +57,7 @@ class GenerateFileNameTestCase(unittest.TestCase):
         self.assertEqual('dj-mag-top-100-djs-1997.csv', file_name)
 
 
+@unittest.skip("This test should be run only for manual check, but not onn CI")
 class ScrapAllVotingResultsTestCase(unittest.TestCase):
     def test_scrap_all_voting_results(self):
         scrap_all_voting_results()
