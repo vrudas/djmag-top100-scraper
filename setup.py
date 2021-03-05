@@ -8,6 +8,7 @@ setup(
     install_requires=[
         'requests',
         'bs4',
-        'coverage'
+        'coverage',
+        'pytest'
     ]
 )
