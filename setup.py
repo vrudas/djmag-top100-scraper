@@ -2,7 +2,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    packages=find_packages(),
+    packages=['src', 'tests'],
     install_requires=[
         'requests',
         'bs4',
