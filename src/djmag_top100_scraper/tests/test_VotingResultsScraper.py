@@ -1,8 +1,8 @@
 import os
 import unittest
 
-from VotingResultsScraper import scrap_top_100_awards_links, scrap_top_100_djs_voting_results, generate_file_name, \
-    scrap_all_voting_results
+from djmag_top100_scraper.VotingResultsScraper import scrap_top_100_awards_links, scrap_top_100_djs_voting_results, \
+    generate_file_name, scrap_all_voting_results
 
 EXPECTED_TOP_100_AWARDS_LINKS = [
     'http://www.electronicdancemusic.cz/awards/top-100-dj-s/672-dj-mag-top-100-dj-s-2020',

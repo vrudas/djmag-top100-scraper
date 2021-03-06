@@ -5,7 +5,7 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
-from DJVoteResult import DJVoteResult
+from djmag_top100_scraper.DJVoteResult import DJVoteResult
 
 SITE_ROOT = 'http://www.electronicdancemusic.cz'
 RESOURCES_DIR_PATH = '../resources'
