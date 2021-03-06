@@ -25,6 +25,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install djmag-top100-scraper package
+      run: |
+        pip install -e .
         python -c "import djmag_top100_scraper"
     - name: Lint with flake8
       run: |
