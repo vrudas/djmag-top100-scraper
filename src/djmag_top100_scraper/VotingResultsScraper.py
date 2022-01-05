@@ -1,4 +1,5 @@
 import csv
+import os
 import re
 from typing import List
 
@@ -79,7 +80,7 @@ def generate_file_name(awards_link: str) -> str:
 def save_scraped_voting_results_to_file(file_name: str, voting_results: List[DJVoteResult]):
     path_to_file = RESOURCES_DIR_PATH + '/' + file_name
     with open(path_to_file, mode='w') as results_file:
-        results_writer = csv.writer(results_file)
+        results_writer = csv.writer(results_file, lineterminator=os.linesep)
 
         for vote_result in voting_results:
             vote_result_row = [vote_result.position, vote_result.dj_name]
