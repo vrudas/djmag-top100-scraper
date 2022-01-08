@@ -5,6 +5,7 @@ from djmag_top100_scraper.VotingResultsScraper import scrap_top_100_awards_links
     generate_file_name, scrap_all_voting_results
 
 EXPECTED_TOP_100_AWARDS_LINKS = [
+    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/706-dj-mag-top-100-dj-s-2021',
     'http://www.electronicdancemusic.cz/awards/top-100-dj-s/672-dj-mag-top-100-dj-s-2020',
     'http://www.electronicdancemusic.cz/awards/top-100-dj-s/578-dj-mag-top-100-dj-s-2019',
     'http://www.electronicdancemusic.cz/awards/top-100-dj-s/464-dj-mag-top-100-dj-s-2018',
@@ -87,6 +88,7 @@ class ScrapAllVotingResultsTestCase(unittest.TestCase):
             '../resources/dj-mag-top-100-djs-2018.csv',
             '../resources/dj-mag-top-100-djs-2019.csv',
             '../resources/dj-mag-top-100-djs-2020.csv',
+            '../resources/dj-mag-top-100-djs-2021.csv',
         ]
 
         for file_path in file_paths:
