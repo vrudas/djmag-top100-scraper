@@ -13,7 +13,7 @@ EXPECTED_TOP_100_AWARDS_LINKS = [
     'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2016',
     'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2015',
     'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2014',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2013',
+    # 'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2013', # Not exists anymore on SITE
     'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2012',
     'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2011',
     'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2010',
@@ -80,7 +80,7 @@ class ScrapAllVotingResultsTestCase(unittest.TestCase):
             '../resources/dj-mag-top-100-djs-2010.csv',
             '../resources/dj-mag-top-100-djs-2011.csv',
             '../resources/dj-mag-top-100-djs-2012.csv',
-            '../resources/dj-mag-top-100-djs-2013.csv',
+            # '../resources/dj-mag-top-100-djs-2013.csv', # Not exists anymore on SITE
             '../resources/dj-mag-top-100-djs-2014.csv',
             '../resources/dj-mag-top-100-djs-2015.csv',
             '../resources/dj-mag-top-100-djs-2016.csv',
