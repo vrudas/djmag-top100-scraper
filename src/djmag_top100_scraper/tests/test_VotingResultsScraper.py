@@ -5,31 +5,31 @@ from djmag_top100_scraper.VotingResultsScraper import scrap_top_100_awards_links
     generate_file_name, scrap_all_voting_results
 
 EXPECTED_TOP_100_AWARDS_LINKS = [
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/706-dj-mag-top-100-dj-s-2021',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/672-dj-mag-top-100-dj-s-2020',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/578-dj-mag-top-100-dj-s-2019',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/464-dj-mag-top-100-dj-s-2018',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/214-dj-mag-top-100-dj-s-2017',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/18-dj-mag-top-100-dj-s-2016',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/62-dj-mag-top-100-dj-s-2015',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/65-dj-mag-top-100-dj-s-2014',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/64-dj-mag-top-100-dj-s-2013',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/335-dj-mag-top-100-dj-s-2012',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/334-dj-mag-top-100-dj-s-2011',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/333-dj-mag-top-100-dj-s-2010',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/332-dj-mag-top-100-dj-s-2009',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/331-dj-mag-top-100-dj-s-2008',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/330-dj-mag-top-100-dj-s-2007',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/329-dj-mag-top-100-dj-s-2006',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/328-dj-mag-top-100-dj-s-2005',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/327-dj-mag-top-100-dj-s-2004',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/326-dj-mag-top-100-dj-s-2003',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/321-dj-mag-top-100-dj-s-2002',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/320-dj-mag-top-100-dj-s-2001',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/319-dj-mag-top-100-dj-s-2000',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/318-dj-mag-top-100-dj-s-1999',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/317-dj-mag-top-100-dj-s-1998',
-    'http://www.electronicdancemusic.cz/awards/top-100-dj-s/316-dj-mag-top-100-dj-s-1997',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2021',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2020',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2019',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2018',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2017',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2016',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2015',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2014',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2013',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2012',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2011',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2010',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2009',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2008',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2007',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2006',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2005',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2004',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2003',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2002',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2001',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2000',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-1999',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-1998',
+    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-1997',
 ]
 
 
@@ -52,7 +52,7 @@ class ScrapTop100DJsVoteResultsTestCase(unittest.TestCase):
 class GenerateFileNameTestCase(unittest.TestCase):
     def test_generate_file_name(self):
         file_name = generate_file_name(
-            'http://www.electronicdancemusic.cz/awards/top-100-dj-s/316-dj-mag-top-100-dj-s-1997'
+            'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-1997'
         )
 
         self.assertEqual('dj-mag-top-100-djs-1997.csv', file_name)
