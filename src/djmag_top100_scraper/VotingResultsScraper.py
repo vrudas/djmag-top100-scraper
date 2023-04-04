@@ -53,7 +53,7 @@ def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
         features="html.parser"
     )
 
-    voting_results_element = awards_page_content.find(class_='art-article')
+    voting_results_element = awards_page_content.find(class_='com-content-article__body')
     voting_result_lines = voting_results_element.find_all(text=re.compile('\\d+\\.\\s'))
 
     split_vote_result_lines = map(
