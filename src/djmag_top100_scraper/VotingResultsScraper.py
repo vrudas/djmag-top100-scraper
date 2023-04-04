@@ -8,12 +8,12 @@ from bs4 import BeautifulSoup
 
 from djmag_top100_scraper.DJVoteResult import DJVoteResult
 
-SITE_ROOT = 'http://www.electronicdancemusic.cz'
+SITE_ROOT = 'https://www.electronicdancemusic.cz'
 RESOURCES_DIR_PATH = '../resources'
 
 
 def scrap_top_100_awards_links() -> List[str]:
-    all_awards_page_url = SITE_ROOT + '/awards/top-100-dj-s'
+    all_awards_page_url = SITE_ROOT + '/awards/top-100-djs'
 
     all_awards_page = requests.get(all_awards_page_url)
 
