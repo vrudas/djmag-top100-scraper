@@ -53,6 +53,7 @@ def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
         features="html.parser"
     )
 
+    awards_year = extract_awards_year_from_link
     voting_results_element = awards_page_content.find(class_='com-content-article__body')
     voting_result_lines = voting_results_element.find_all(text=re.compile('\\d+\\.\\s'))
 
@@ -73,8 +74,13 @@ def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
 
 
 def generate_file_name(awards_link: str) -> str:
-    awards_year = awards_link[-4:]
+    awards_year = extract_awards_year_from_link(awards_link)
     return 'dj-mag-top-100-djs-' + awards_year + '.csv'
+
+
+def extract_awards_year_from_link(awards_link):
+    awards_year = awards_link[-4:]
+    return awards_year
 
 
 def save_scraped_voting_results_to_file(file_name: str, voting_results: List[DJVoteResult]):
