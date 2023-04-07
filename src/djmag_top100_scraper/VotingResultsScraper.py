@@ -54,11 +54,13 @@ def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
     )
 
     awards_year = extract_awards_year_from_link
-    voting_results_element = awards_page_content.find(class_='com-content-article__body')
-    voting_result_lines = voting_results_element.find_all(text=re.compile('\\d+\\.\\s'))
+    voting_result_lines = extract_voting_result_lines_from_page_content(
+        awards_page_content,
+        awards_year
+    )
 
     split_vote_result_lines = map(
-        lambda result_line: re.split('\\.\\s', result_line),
+        split_vote_result_line(awards_year),
         voting_result_lines
     )
 
@@ -71,6 +73,17 @@ def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
     )
 
     return list(dj_vote_results)
+
+
+def split_vote_result_line(awards_year):
+    return lambda result_line: re.split('\\.\\s', result_line)
+
+
+def extract_voting_result_lines_from_page_content(awards_page_content, awards_year) -> List[str]:
+    voting_results_element = awards_page_content.find(class_='com-content-article__body')
+    voting_result_lines = voting_results_element.find_all(text=re.compile('\\d+\\.\\s'))
+
+    return voting_result_lines
 
 
 def generate_file_name(awards_link: str) -> str:
