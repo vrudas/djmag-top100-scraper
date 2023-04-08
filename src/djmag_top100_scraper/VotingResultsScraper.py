@@ -53,7 +53,7 @@ def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
         features="html.parser"
     )
 
-    awards_year = extract_awards_year_from_link
+    awards_year = extract_awards_year_from_link(awards_link)
     voting_result_lines = extract_voting_result_lines_from_page_content(
         awards_page_content,
         awards_year
