@@ -81,7 +81,11 @@ def split_vote_result_line(awards_year):
 
 def extract_voting_result_lines_from_page_content(awards_page_content, awards_year) -> List[str]:
     voting_results_element = awards_page_content.find(class_='com-content-article__body')
-    voting_result_lines = voting_results_element.find_all(text=re.compile('\\d+\\.\\s'))
+
+    if awards_year == 2015:
+        voting_result_lines = voting_results_element.find_all(text=re.compile('\\d+.?\\s'))
+    else:
+        voting_result_lines = voting_results_element.find_all(text=re.compile('\\d+\\.\\s'))
 
     return voting_result_lines
 
