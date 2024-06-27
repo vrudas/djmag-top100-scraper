@@ -1,6 +1,5 @@
 import csv
 import os
-import re
 from typing import List
 
 import requests
@@ -8,43 +7,39 @@ from bs4 import BeautifulSoup
 
 from djmag_top100_scraper.DJVoteResult import DJVoteResult
 
-SITE_ROOT = 'https://www.electronicdancemusic.cz'
+SITE_ROOT = 'https://djmag.com/top100djs'
 RESOURCES_DIR_PATH = '../resources'
 
 
 def scrap_top_100_awards_links() -> List[str]:
-    all_awards_page_url = SITE_ROOT + '/awards/top-100-djs'
-
-    all_awards_page = requests.get(all_awards_page_url)
+    all_awards_page = requests.get(SITE_ROOT)
 
     all_awards_page_content = BeautifulSoup(
         all_awards_page.content,
         features='html.parser'
     )
 
-    form_with_award_links = all_awards_page_content.find(id='adminForm')
+    form_with_award_links = all_awards_page_content.find(id='edit-year')
 
-    link_elements = form_with_award_links.find_all('a')
-
-    hrefs = list(
+    available_years = list(
         map(
-            lambda link_element: link_element['href'],
-            link_elements
+            lambda option: option.text,
+            form_with_award_links.contents
         )
     )
 
-    awards_links = list(filter(lambda href: href.startswith('/awards'), hrefs))
-
-    return list(
+    awards_links = list(
         map(
-            lambda link: SITE_ROOT + link,
-            awards_links
+            lambda year: f'{SITE_ROOT}/{year}',
+            available_years
         )
     )
+
+    return awards_links
 
 
 def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
-    print('Scrap voting results for link:' + awards_link)
+    print('Scrap voting results for link: ' + awards_link)
 
     awards_page = requests.get(awards_link)
 
@@ -59,35 +54,30 @@ def scrap_top_100_djs_voting_results(awards_link: str) -> List[DJVoteResult]:
         awards_year
     )
 
-    split_vote_result_lines = map(
-        split_vote_result_line(awards_year),
-        voting_result_lines
-    )
-
     dj_vote_results = map(
         lambda vote_result: DJVoteResult(
             vote_result[0],
             vote_result[1]
         ),
-        split_vote_result_lines
+        voting_result_lines
     )
 
     return list(dj_vote_results)
 
 
-def split_vote_result_line(awards_year):
-    return lambda result_line: re.split('\\.\\s', result_line)
+def extract_voting_result_lines_from_page_content(awards_page_content, awards_year) -> List[tuple[int, str]]:
+    voting_results_elements = awards_page_content.find_all(class_='top100dj-name')
+    voting_results_link_elements = [element.find('a') for element in voting_results_elements]
 
-
-def extract_voting_result_lines_from_page_content(awards_page_content, awards_year) -> List[str]:
-    voting_results_element = awards_page_content.find(class_='com-content-article__body')
-
-    if awards_year == 2015:
-        voting_result_lines = voting_results_element.find_all(string=re.compile('\\d+.?\\s'))
-    else:
-        voting_result_lines = voting_results_element.find_all(string=re.compile('\\d+\\.\\s'))
-
-    return voting_result_lines
+    return list(
+        map(
+            lambda element: (
+                element.attrs['href'].replace(f'/top100djs/{awards_year}/', '').split('/')[0],
+                element.text.replace('\n', '')
+            ),
+            voting_results_link_elements
+        )
+    )
 
 
 def generate_file_name(awards_link: str) -> str:
