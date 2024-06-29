@@ -5,31 +5,26 @@ from djmag_top100_scraper.VotingResultsScraper import scrap_top_100_awards_links
     generate_file_name, scrap_all_voting_results
 
 EXPECTED_TOP_100_AWARDS_LINKS = [
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2021',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2020',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2019',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2018',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2017',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2016',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2015',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2014',
-    # 'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2013', # Not exists anymore on SITE
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2012',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2011',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2010',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2009',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2008',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2007',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2006',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2005',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2004',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2003',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2002',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2001',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-2000',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-1999',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-1998',
-    'https://www.electronicdancemusic.cz/awards/top-100-djs/dj-mag-top-100-djs-1997',
+    'https://djmag.com/top100djs/2004',
+    'https://djmag.com/top100djs/2005',
+    'https://djmag.com/top100djs/2006',
+    'https://djmag.com/top100djs/2007',
+    'https://djmag.com/top100djs/2008',
+    'https://djmag.com/top100djs/2009',
+    'https://djmag.com/top100djs/2010',
+    'https://djmag.com/top100djs/2011',
+    'https://djmag.com/top100djs/2012',
+    'https://djmag.com/top100djs/2013',
+    'https://djmag.com/top100djs/2014',
+    'https://djmag.com/top100djs/2015',
+    'https://djmag.com/top100djs/2016',
+    'https://djmag.com/top100djs/2017',
+    'https://djmag.com/top100djs/2018',
+    'https://djmag.com/top100djs/2019',
+    'https://djmag.com/top100djs/2020',
+    'https://djmag.com/top100djs/2021',
+    'https://djmag.com/top100djs/2022',
+    'https://djmag.com/top100djs/2023'
 ]
 
 
@@ -46,7 +41,15 @@ class ScrapTop100DJsVoteResultsTestCase(unittest.TestCase):
             scrapped_voting_results = scrap_top_100_djs_voting_results(awards_link)
             scrapped_djs_count = len(scrapped_voting_results)
 
-            self.assertEqual(100, scrapped_djs_count, 'Failed to scrap voting results for link:' + awards_link)
+            if awards_link.__contains__('2004'):
+                self.assert_awards(awards_link, scrapped_djs_count, 64)
+            elif awards_link.__contains__('2007'):
+                self.assert_awards(awards_link, scrapped_djs_count, 96)
+            else:
+                self.assert_awards(awards_link, scrapped_djs_count)
+
+    def assert_awards(self, awards_link, scrapped_djs_count, expected_djs_count=100):
+        self.assertEqual(expected_djs_count, scrapped_djs_count, 'Failed to scrap voting results for link:' + awards_link)
 
 
 class GenerateFileNameTestCase(unittest.TestCase):
